@@ -17,18 +17,35 @@ Rules:
 
 def mastermind():
     tries = 0
+
     colors = {"red": "r",
               "blue": "b",
               "green": "g",
               "yellow": "y",
               "orange": "o"}
+
     codemaster = random.sample(list(colors.values()), 4)
+
     while tries <= 10:
         try:
             guess = list(input("Enter 4 colors as a guess: "))
+            if len(guess) != 4:
+                raise ValueError
+            elif not all(guess) in colors.values():
+                raise ValueError
         except ValueError:
-            print("Invalid input.")
+            print("Invalid input. Example input: gbyo")
+            continue
 
+        if guess == codemaster:
+            print("You cracked the code! Congratulations!")
+            break
+        else:
+            for color in range(4):
+                if guess[color] == codemaster[color]:
+                    print("One black pin.")
+                elif guess[color] != codemaster[color] and guess[color] in codemaster:
+                    print("One white pin.")
 
 
 #  TODO: After a guess, give feedback
