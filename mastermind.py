@@ -1,4 +1,6 @@
 
+import random
+
 """
 This is a simple version of the game mastermind.
 The goal is to guess the 4 random colors.
@@ -13,10 +15,20 @@ Rules:
 
 """
 
-# TODO: Create game enviroment and variables
+def mastermind():
+    tries = 0
+    colors = {"red": "r",
+              "blue": "b",
+              "green": "g",
+              "yellow": "y",
+              "orange": "o"}
+    codemaster = random.sample(list(colors.values()), 4)
+    while tries <= 10:
+        try:
+            guess = list(input("Enter 4 colors as a guess: "))
+        except ValueError:
+            print("Invalid input.")
 
-
-# TODO: Choose a random sample of colors
 
 
 #  TODO: After a guess, give feedback
@@ -24,3 +36,4 @@ Rules:
 
 # TODO: If guess is correct, ask to play again
 
+mastermind()
