@@ -23,7 +23,6 @@ def mastermind():
               "green": "g",
               "yellow": "y",
               "orange": "o"}
-
     codemaster = random.sample(list(colors.values()), 4)
 
     while tries <= 10:
