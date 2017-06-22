@@ -18,23 +18,25 @@ Rules:
 def mastermind():
     tries = 0
 
-    colors = {"red": "r",
-              "blue": "b",
-              "green": "g",
-              "yellow": "y",
-              "orange": "o"}
-    codemaster = random.sample(list(colors.values()), 4)
+    colors = {"r": "red",
+              "b": "blue",
+              "g": "green",
+              "y": "yellow",
+              "o": "orange"}
+    codemaster = random.sample(list(colors.keys()), 4)
 
     while tries <= 10:
         try:
             guess = list(input("Enter 4 colors as a guess: "))
             if len(set(guess)) != 4:
                 raise ValueError
-            if not set(guess) == set(i for i in colors.values() if i in guess):
+            if not set(guess) == set(i for i in colors.keys() if i in guess):
                 raise ValueError
         except ValueError:
             print("Invalid input. Example input: gbyo")
             continue
+
+        print("You chose: 1: {}, 2: {}, 3: {}, 4: {}".format(colors[guess[0]], colors[guess[1]], colors[guess[2]], colors[guess[3]]))
 
         if guess == codemaster:
             print("You cracked the code! Congratulations!")
