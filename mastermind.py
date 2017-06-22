@@ -28,9 +28,9 @@ def mastermind():
     while tries <= 10:
         try:
             guess = list(input("Enter 4 colors as a guess: "))
-            if len(guess) != 4:
+            if len(set(guess)) != 4:
                 raise ValueError
-            elif not all(guess) in colors.values():
+            if not set(guess) == set(i for i in colors.values() if i in guess):
                 raise ValueError
         except ValueError:
             print("Invalid input. Example input: gbyo")
@@ -45,9 +45,10 @@ def mastermind():
                     print("One black pin.")
                 elif guess[color] != codemaster[color] and guess[color] in codemaster:
                     print("One white pin.")
+        tries += 1
 
 
-#  TODO: After a guess, give feedback
+#  TODO: Print pretty feedback
 
 
 # TODO: If guess is correct, ask to play again
