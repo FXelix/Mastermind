@@ -14,6 +14,7 @@ Rules:
     - white pin: Correct color but wrong position.
 """
 
+
 def mastermind():
     tries = 0
 
@@ -23,9 +24,14 @@ def mastermind():
               "y": "Yellow",
               "o": "Orange",
               "w": "White",
-              "p": "Purple",}
+              "p": "Purple"}
 
     codemaster = random.sample(list(colors.keys()), 4)
+
+    print("Welcome to Mastermind, guess the code!\n")
+    for k, v in colors.items():
+        print("{}: {}".format(k, v))
+    print("\n")
 
     while tries <= 12:
         try:
@@ -54,7 +60,15 @@ def mastermind():
             print("{} black pins. {} white pins. \n".format(black_pin, white_pin)+ "-"*27)
         tries += 1
 
+    print("The code was {}.".format("".join(codemaster)))
 
-# TODO: If guess is correct, ask to play again
 
-mastermind()
+if __name__ == "__main__":
+    while True:
+        mastermind()
+        again = input("Want to play again? Press \"y\"!")
+        if again.lower() == "y":
+            continue
+        else:
+            break
+
