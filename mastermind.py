@@ -3,7 +3,7 @@ import random
 
 """
 This is a simple version of the game mastermind.
-The goal is to guess the 7 random colors.
+The goal is to guess the 4 random colors.
 
 Rules:
 - The colors: red, blue, green, yellow, orange, white, purple
@@ -38,7 +38,7 @@ def mastermind():
             guess = list(input("Your guess: "))
             if len(set(guess)) != 4:
                 raise ValueError
-            if not set(guess) == set(color for color in colors.keys() if color in guess):
+            if set(guess) != set(color for color in guess if color in colors.keys()):  # check if guessed colors exist
                 raise ValueError
         except ValueError:
             print("Invalid input. \n")
@@ -71,4 +71,3 @@ if __name__ == "__main__":
             continue
         else:
             break
-
