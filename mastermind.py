@@ -3,16 +3,15 @@ import random
 
 """
 This is a simple version of the game mastermind.
-The goal is to guess the 4 random colors.
+The goal is to guess the 7 random colors.
 
 Rules:
-- The colors: red, blue, green, yellow, orange
+- The colors: red, blue, green, yellow, orange, white, purple
 - The code has only unique colors, no duplicates.
 - Every position must have a color.
 - After guessing the Codemaster gives hints.
     - black pin: Correct color and correct position.
     - white pin: Correct color but wrong position.
-
 """
 
 def mastermind():
@@ -22,20 +21,23 @@ def mastermind():
               "b": "Blue",
               "g": "Green",
               "y": "Yellow",
-              "o": "Orange"}
+              "o": "Orange",
+              "w": "White",
+              "p": "Purple",}
+
     codemaster = random.sample(list(colors.keys()), 4)
 
-    while tries <= 10:
+    while tries <= 12:
         try:
             guess = list(input("Your guess: "))
             if len(set(guess)) != 4:
                 raise ValueError
-            if not set(guess) == set(i for i in colors.keys() if i in guess):
+            if not set(guess) == set(color for color in colors.keys() if color in guess):
                 raise ValueError
         except ValueError:
             print("Invalid input. \n")
             continue
-        print("-"*35)
+        print("-"*50)
         print("You chose: 1: {}, 2: {}, 3: {}, 4: {}".format(colors[guess[0]], colors[guess[1]], colors[guess[2]], colors[guess[3]]))
 
         if guess == codemaster:
@@ -49,7 +51,7 @@ def mastermind():
                     black_pin += 1
                 elif guess[color] != codemaster[color] and guess[color] in codemaster:
                     white_pin += 1
-            print("{} black pins. {} white pins. \n".format(black_pin, white_pin)+ "-"*25)
+            print("{} black pins. {} white pins. \n".format(black_pin, white_pin)+ "-"*27)
         tries += 1
 
 
