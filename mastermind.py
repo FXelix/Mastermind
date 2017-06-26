@@ -35,7 +35,7 @@ def mastermind():
     for tries in range(13):
         try:
             guess = list(input("Your guess: "))
-            if not (len(set(guess)) == 4 and set(guess).issubset(set(colors))):  # check if all colors exist
+            if not (len(guess) == 4 and set(guess).issubset(set(colors))):  # check if all colors exist
                 raise ValueError
         except ValueError:
             print("Invalid input. \n")
@@ -56,15 +56,10 @@ def mastermind():
                     white_pin += 1
             print("{} black pins. {} white pins. \n".format(black_pin, white_pin) + "-"*27)
 
-
     print("The code was {}.".format("".join(codemaster)))
 
 
 if __name__ == "__main__":
-    while True:
+    mastermind()
+    while input("Again? Press \"y\"!").lower().startswith("y"):
         mastermind()
-        again = input("Want to play again? Press \"y\"!")
-        if again.lower() == "y":
-            continue
-        else:
-            break
