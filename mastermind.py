@@ -17,6 +17,8 @@ Rules:
 
 def mastermind():
 
+    tries = 0
+    
     colors = {"r": "Red",
               "b": "Blue",
               "g": "Green",
@@ -32,7 +34,7 @@ def mastermind():
         print("{}: {}".format(k, v))
     print("\n")
 
-    for tries in range(13):
+    while tries < 12:
         try:
             guess = list(input("Your guess: "))
             if not (len(guess) == 4 and set(guess).issubset(set(colors))):  # check if all colors exist
@@ -54,7 +56,9 @@ def mastermind():
                     black_pin += 1
                 elif guess[color] in codemaster:
                     white_pin += 1
+                    
             print("{} black pins. {} white pins. \n".format(black_pin, white_pin) + "-"*27)
+            tries += 1
 
     print("The code was {}.".format("".join(codemaster)))
 
